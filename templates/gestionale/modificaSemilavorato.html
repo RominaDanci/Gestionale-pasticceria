@@ -1,0 +1,24 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formSemilavoratoModify %}
+    {% from "sito/_formhelpers.html" import render_field %}
+    <form method="POST" action="" class="center">
+        <dl>
+            <lable>Nome</lable>
+            <input type="text" class="form-control" placeholder="inserire nome" name = "nome" value = "{{Semi.Nome}}" required>
+            <lable>Quantità</lable>
+            <input type="number" class="form-control" placeholder="inserire quantità" name = "quantità" value = "{{Semi.Quantità}}" required>
+            <lable>Prezzo</lable>
+            <input type="number" class="form-control" placeholder="inserire prezzo" name = "prezzo" value = "{{Semi.PrezzoUnitario}}" required>
+            <lable>IVA</lable>
+            <input type="number" class="form-control" placeholder="inserire iva" name = "iva" value = "{{Semi.IVA}}" required>
+            <lable>Categoria</lable>
+            <input type="text" class="form-control" placeholder="inserire categoria" name = "categoria" value = "{{Semi.Categoria}}" required>
+            <lable>Descrizione</lable>
+            <input type="text" class="form-control" placeholder="inserire descrizione" name = "descrizione" value = "{{Semi.Descrizione}}" required>
+            <lable>Incipit</lable>
+            <input type="text" class="form-control" placeholder="inserire incipit" name = "incipit" value = "{{Semi.Categoria}}" required>
+            <button type="submit" class="btn ">Aggiorna</button>
+        </dl>
+    </form>
+{% endblock %}

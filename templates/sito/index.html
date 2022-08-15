@@ -1,0 +1,450 @@
+{% extends 'sito/base.html' %}
+
+{% block hero %}
+<!-- Hero Section Begin -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="card spad center margin-top" style="width: 18rem;">
+            <div class="card-body orange">
+                {% for message in messages %}
+                <h2 class="black">{{ message }}</h2>
+                {% endfor %}
+            </div>
+        </div>v>
+        </div>
+        {% endif %}
+    {% endwith %}
+    <section class="hero">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__item set-bg" data-setbg="{{url_for('static', filename='img/sito/hero/hero-1.jpg')}}">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="hero__text">
+                                <h2>Making your life sweeter one bite at a time!</h2>
+                                <a href="{{url_for('ecommerce.shop')}}" class="primary-btn">Our cakes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__item set-bg" data-setbg="{{url_for('static', filename='img/sito/hero/hero-1.jpg')}}">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="hero__text">
+                                <h2>Vienici a trovare in negozio</h2>
+                                <a href="{{url_for('contact')}}" class="primary-btn">Our cakes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+{% endblock %}
+
+{% block about %}
+<!-- About Section Begin -->
+    <section class="about spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="about__text">
+                        <div class="section-title">
+                            <span>About Cake shop</span>
+                            <h2>Cakes and bakes from the house of Queens!</h2>
+                        </div>
+                        <p>The "Cake Shop" is a Jordanian Brand that started as a small family business. The owners are
+                        Dr. Iyad Sultan and Dr. Sereen Sharabati, supported by a staff of 80 employees.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="about__bar">
+                        <div class="about__bar__item">
+                            <p>Cake design</p>
+                            <div id="bar1" class="barfiller">
+                                <div class="tipWrap"><span class="tip"></span></div>
+                                <span class="fill" data-percentage="95"></span>
+                            </div>
+                        </div>
+                        <div class="about__bar__item">
+                            <p>Cake Product</p>
+                            <div id="bar2" class="barfiller">
+                                <div class="tipWrap"><span class="tip"></span></div>
+                                <span class="fill" data-percentage="80"></span>
+                            </div>
+                        </div>
+                        <div class="about__bar__item">
+                            <p>Cake Recipes</p>
+                            <div id="bar3" class="barfiller">
+                                <div class="tipWrap"><span class="tip"></span></div>
+                                <span class="fill" data-percentage="90"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </section>
+    <!-- About Section End -->
+{% endblock %}
+
+{% block shop %}
+    <!-- Product Section Begin -->
+    <section class="product">
+        <div class="container">
+            <div class="section-title">
+                <span>Cake shop</span>
+                <h2>I nostri prodotti in evidenza</h2>
+            </div>
+            <div class="row">
+                {% for i in range(0, len_prod_fav) %}
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a class="product__item space" href="{{url_for('ecommerce.shop_details', id=prod_fav[i].Id)}}">
+                        <div class="product__item__pic set-bg" data-setbg="{{url_for('static', filename='img/sito/shop/product-1.jpg')}}">
+                            <div class="product__label">
+                                <span>{{prod_fav[i].Categoria}}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="{{url_for('ecommerce.shop_details', id=prod_fav[i].Id)}}">{{prod_fav[i].Nome}}</a></h6>
+                            <div class="product__item__price">{{prod_fav[i].PrezzoUnitario}}€</div>
+                            <div class="cart_add">
+                                <a href="{{url_for('ecommerce.shop_details', id=prod_fav[i].Id)}}">Add to cart</a>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                <br>
+                {% endfor %}
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-3 center">
+                    <a href="{{url_for('ecommerce.shop')}}" class="primary-btn">visita lo shop</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section Begin -->
+{% endblock %}
+
+{% block team %}
+<section class="team spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <div class="section-title">
+                        <span>Our team</span>
+                        <h2>Sweet Baker </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{{url_for('static', filename='img/sito/team/team-1.jpg')}}">
+                        <div class="team__item__text">
+                            <h6>Randy Butler</h6>
+                            <span>Decorater</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{{url_for('static', filename='img/sito/team/team-2.jpg')}}">
+                        <div class="team__item__text">
+                            <h6>Randy Butler</h6>
+                            <span>Decorater</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{{url_for('static', filename='img/sito/team/team-3.jpg')}}">
+                        <div class="team__item__text">
+                            <h6>Randy Butler</h6>
+                            <span>Decorater</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item set-bg" data-setbg="{{url_for('static', filename='img/sito/team/team-4.jpg')}}">
+                        <div class="team__item__text">
+                            <h6>Randy Butler</h6>
+                            <span>Decorater</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Section End -->
+{% endblock %}
+
+{% block testimonial %}
+<!-- Testimonial Section Begin -->
+    <section class="testimonial spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span>Testimonial</span>
+                        <h2>Our client say</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="testimonial__slider owl-carousel">
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-1.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Kerry D.Silva</h5>
+                                    <span>New york</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-2.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Kerry D.Silva</h5>
+                                    <span>New york</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-1.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Ophelia Nunez</h5>
+                                    <span>London</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-2.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Kerry D.Silva</h5>
+                                    <span>New york</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-1.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Ophelia Nunez</h5>
+                                    <span>London</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="testimonial__item">
+                            <div class="testimonial__author">
+                                <div class="testimonial__author__pic">
+                                    <img src="{{url_for('static', filename='img/sito/testimonial/ta-2.jpg')}}" alt="">
+                                </div>
+                                <div class="testimonial__author__text">
+                                    <h5>Kerry D.Silva</h5>
+                                    <span>New york</span>
+                                </div>
+                            </div>
+                            <div class="rating">
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star"></span>
+                                <span class="icon_star-half_alt"></span>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua viverra lacus vel facilisis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonial Section End -->
+{% endblock %}
+
+{% block instagram %}
+<!-- Instagram Section Begin -->
+    <section class="instagram spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 p-0">
+                    <div class="instagram__text">
+                        <div class="section-title">
+                            <span>Follow us on instagram</span>
+                            <h2>Sweet moments are saved as memories</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <a href="">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-1.jpg')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic middle__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-2.jpg')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-3.jpg')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-4.jpg')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic middle__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-5.jpg')}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-6">
+                                <div class="instagram__pic">
+                                    <img src="{{url_for('static', filename='img/sito/instagram/instagram-4.jpg')}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Instagram Section End -->
+{% endblock %}
+
+{% block lastpost %}
+<!-- Team Section Begin -->
+    <section class="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-7 col-sm-7">
+                    <div class="section-title">
+                        <span>Blog</span>
+                        <h2>Leggi anche i nostri ultimi post </h2>
+                    </div>
+                </div>
+            </div>
+            <a href="{{url_for('blog.blogDetailsRoute', id = testo.Id)}}">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h3> {{testo.Titolo}} </h3>
+                        <br>
+                        <img src="{{url_for('static', filename=img)}}" alt="">
+                        <div>{{testo.Contenuto}}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!-- Team Section End -->
+{% endblock %}
+
+{% block map %}
+<!-- Map Begin -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-title">
+                <span>Dove siamo</span>
+                <h2>Vieni a trovarci presso la nostra pasticceria</h2>
+            </div>
+            <div class="map">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4 col-md-7">
+                            <div class="map__inner">
+                                <h6>COlorado</h6>
+                                <ul>
+                                    <li>1000 Lakepoint Dr, Frisco, CO 80443, USA</li>
+                                    <li>Sweetcake@support.com</li>
+                                    <li>+1 800-786-1000</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map__iframe">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10784.188505644011!2d19.053119335158936!3d47.48899529453826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1543907528304" height="300" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Map End -->
+{% endblock %}
+

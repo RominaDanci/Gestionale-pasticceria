@@ -1,0 +1,30 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formSemilavorato %}
+  <div class="center">
+      <h2 class="text-center">Aggiungi semilavorato</h2>
+  {% from "sito/_formhelpers.html" import render_field %}
+      <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col">
+                     {{ render_field(form.Nome, class='semi'+form.Nome.name) }}
+                </div>
+                <div class="col">
+                    {{ render_field(form.Categoria, class='semi'+form.Categoria.name) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                     {{ render_field(form.PrezzoUnitario, class='semi'+form.PrezzoUnitario.name) }}
+                </div>
+                <div class="col">
+                    {{ render_field(form.IVA, class='semi'+form.IVA.name) }}
+                </div>
+            </div>
+            <br>
+            {{ render_field(form.Descrizione,class='semi'+form.Descrizione.name) }}
+            {{ form.submit }}
+      </form>
+  </div>
+{% endblock %}

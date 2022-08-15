@@ -1,0 +1,88 @@
+{% extends 'gestionale/base.html' %}
+
+{% block grafici %}
+<h2>Bilancio semplificato - Grafico</h2>
+<div class="chartBox center">
+    <canvas id="myChart" ></canvas>
+</div>
+<br>
+{% endblock %}
+
+{% block analisiSezioni %}
+<p class="h2">Macroaree Entrate</p>
+<table class="table">
+    <tr>
+      <th scope="col" class="text-center">Voce</th>
+        <th scope="col" class="text-center">Descrizione</th>
+        <th scope="col" class="text-center">Importo</th>
+    </tr>
+    {% for i in range(0, 4)%}
+    <tr>
+      <th scope="row" class="text-start text-center">Ecommerce</th>
+      <td class="text-start text-center">Guadagni lordi provenenti dal sito</td>
+      <td class="text-start text-center">27000</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <th scope="row" class="text-start text-center"></th>
+        <td class="text-start text-center"></td>
+        <th class="text-start text-center">Totale:</br> 5000000</th>
+    </tr>
+</table>
+<br>
+<p class="h2">Macroaree Uscite</p>
+<table class="table">
+    <tr>
+      <th scope="col" class="text-center">Voce</th>
+        <th scope="col" class="text-center">Descrizione</th>
+        <th scope="col" class="text-center">Importo</th>
+    </tr>
+    {% for i in range(0, 4)%}
+    <tr>
+      <th scope="row" class="text-start text-center">Fornitori</th>
+      <td class="text-start text-center">Spese legate ai fornitori</td>
+      <td class="text-start text-center">-27000</td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <th scope="row" class="text-start text-center"></th>
+        <td class="text-center"></td>
+        <th class="text-center">Totale:</br> -5000000</th>
+    </tr>
+</table>
+
+<br>
+<p class="h2">Statistiche</p>
+<table class="table">
+    <tr>
+      <th scope="col" class="text-center">Voce</th>
+        <th scope="col" class="text-center">Descrizione</th>
+        <th scope="col" class="text-center">Valore</th>
+    </tr>
+    <tr>
+      <th scope="row" class="text-start text-center">Utile/Perdita</th>
+      <td class="text-start">Rapporto tra i guadagni e le spese</td>
+      <td class="text-start">-27000</td>
+    </tr>
+    <tr>
+      <th scope="row" class="text-start text-center">% Spese</th>
+      <td class="text-start">Quanto incidono le spese nel quadro complessivo</td>
+      <td class="text-start">60%</td>
+    </tr>
+    <tr>
+      <th scope="row" class="text-start text-center">% Ricavi</th>
+      <td class="text-start">Quanto incidono gli incassi nel quadro complessivo</td>
+      <td class="text-start">40%</td>
+    </tr>
+    <tr>
+      <th scope="row" class="text-start text-center">Spesa più<br>significativa</th>
+      <td class="text-start">La spesa che incide di più nella situazione globale</td>
+      <td class="text-start">Fornitori</td>
+    </tr>
+    <tr>
+      <th scope="row" class="text-start text-center">Ricavo più<br>significativo</th>
+      <td class="text-start">Il ricavo che incide di più nella situazione globale</td>
+      <td class="text-start">Ecommerce</td>
+    </tr>
+</table>
+{% endblock %}

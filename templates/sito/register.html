@@ -1,0 +1,35 @@
+{% extends 'sito/base.html' %}
+
+{% block register %}
+<section class="class spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div class="class__form">
+                        <div class="section-title text-center">
+                            <h2>Benvenuto</h2>
+                        </div>
+                        {% from "sito/_formhelpers.html" import render_field %}
+                        <form method="POST" action="">
+                            <dl>
+                              {{ form.hidden_tag() }}
+                              {{ render_field(form.nome) }}
+                              {{ render_field(form.cognome) }}
+                              {{ render_field(form.datanascita) }}
+                              {{ render_field(form.mail) }}
+                              {{ render_field(form.username) }}
+                              {{ render_field(form.password) }}
+                              {{ render_field(form.password_confirm) }}
+                              {{ render_field(form.telefono) }}
+                            </dl>
+                            {{ form.submit }}
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

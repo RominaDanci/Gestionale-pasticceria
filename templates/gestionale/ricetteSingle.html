@@ -1,0 +1,40 @@
+{% extends 'gestionale/base.html' %}
+
+{% block dati %}
+<div class="center">
+    <h2 class="text-center">Nome del dolce</h2>
+    <h4 class="text-center">Categoria</h4>
+    <br>
+</div>
+<div class="center">
+    <p class="text-center">Inserire la descrizione</p>
+    <br>
+</div>
+<div class="row">
+    <div class="col-6">
+        <div class="center">
+            <h6>Ingredienti</h6>
+            <p class="padding">
+                {% for i in range(0, 10) %}
+                    uova(1000),
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="center">
+            <h6>Altre informazioni</h6>
+            <ul>
+                <li>numero persone: 98</li>
+                <li>tempo di preparazione: 12.0h</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="center">
+    <p class="text-center">
+        Questa è la ricetta
+    </p>
+</div>
+
+{% endblock %}

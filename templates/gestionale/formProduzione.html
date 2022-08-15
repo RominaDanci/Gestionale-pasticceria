@@ -1,0 +1,34 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formPro %}
+<form method="post" action="">
+    <input type="hidden" name="nascosto" value="1">
+
+    <label>Quantità</label>
+    <input type="number" name="quantita" value="{{Quantita}}">
+
+    <button type="submit">Invia</button>
+</form>
+{% if Quantita > 0 %}
+    <form method="post" action="">
+        <input type="hidden" name="nascosto" value="2">
+        <input type="hidden" name="volte" value="{{Quantita}}">
+        {% for i in range(0, Quantita) %}
+            <label>Prodotto</label>
+            <select name="prodotto-{{i}}">
+                {% for semi in Semi %}
+                    <option value="{{semi.Id}}">{{semi.Nome}}</option>
+                {% endfor %}
+            </select>
+            <label>Quantità</label>
+            <input type="number" name="quantita-{{i}}">
+        {% endfor %}
+        <label>Data</label>
+        <input type="date" name="data">
+        <label>Note</label>
+        <textarea name="note" rows="4" cols="50"></textarea>
+
+        <button type="submit">Aggiungi</button>
+    </form>
+{% endif %}
+{% endblock %}

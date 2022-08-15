@@ -1,0 +1,39 @@
+{% extends 'sito/base.html' %}
+
+{% block user %}
+<section>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__details__recipe__details">
+                    <div class="row">
+                        <div class="col-lg-6 center">
+                            <img class="pic avatar" src="{{url_for('static', filename='img/sito/blog/details/blog-details.jpg')}}">
+                        </div>
+                        <div class="col-lg-6">
+                        {% from "sito/_formhelpers.html" import render_field %}
+                        <form method="POST" action="">
+                            <dl>
+                                <input type="text" class="form-control" placeholder="inserire nome" name = "nome" value = "{{utente.Nome}}" required>
+                                <input type="text" class="form-control" placeholder="inserire cognome" name = "cognome" value = "{{utente.Cognome}}" required>
+                                <input type="date" class="form-control" placeholder="inserire data di nascita" name = "data" value = "{{utente.DataNascita}}" required>
+                                <input type="text" class="form-control" placeholder="inserire mail" name = "mail" value = "{{utente.Mail}}" required>
+                                <input type="text" class="form-control" placeholder="inserire username" name = "username" value = "{{utente.Username}}" required>
+                            </dl>
+
+                            <br>
+                            <div class="product__details__options">
+                                <button type="submit" class="btn ">Aggiorna</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

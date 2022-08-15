@@ -1,0 +1,90 @@
+{% extends 'sito/base.html' %}
+
+{% block breadcrumbWishlist %}
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>Wishlist di {{user}}</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="{{url_for('home')}}">Home</a>
+                        <span>Wishlist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+{% endblock %}
+
+{% block wish %}
+    <!-- Wishlist Section Begin -->
+    {%if len_product == 0%}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="container spad">
+                <div class="row center">
+                    <div>
+                        {% for message in messages %}
+                            <h3 class="text-center">{{ message }}</h3>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <img src="{{url_for('static', filename='img/sito/icon/wishlist.jpg')}}" class="icon center">
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 center">
+                        <a href="{{url_for('ecommerce.shop')}}" class="primary-btn text-center">visita lo shop</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endwith %}
+    {% else %}
+    <section class="wishlist spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="wishlist__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Unit Price</th>
+                                </tr>
+                            </thead>
+                            {% for i in range(0, len_product) %}
+                            <tbody>
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img src="{{url_for('static', filename='img/sito/shop/cart/cart-1.jpg')}}" alt="">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>{{ product[i].Nome }}</h6>
+                                            <!--<h6>Vanilla Salted Caramel</h6>-->
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">${{ product[i].PrezzoUnitario }}</td>
+                                    <!--<td class="cart__price">$ 15.00</td>-->
+                                    <!--<td class="cart__stock">In stock</td>-->
+                                    <td class="cart__btn"><a href="{{url_for('ecommerce.modifyWishlist', id=product[i].Id)}}" class="primary-btn">Aggiungi al carrelo</a></td>
+                                    <td class="cart__btn"><a href="{{url_for('ecommerce.deleteWishlist', id=product[i].Id)}}" class="secondary-btn">Togli dalla wishlist</a></td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Wishlist Section End -->
+{% endblock %}

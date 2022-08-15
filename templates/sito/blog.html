@@ -1,0 +1,109 @@
+{% extends 'sito/base.html' %}
+
+{% block breadcrumbBlog %}
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>Blog</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="{{url_for('home')}}">Home</a>
+                        <span>Blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+{% endblock %}
+
+{% block blog %}
+
+    <!-- Blog Section Begin -->
+    <section class="blog spad">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8">
+                    {% for i in range(0, len_artic) %}
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="{{url_for('static', filename='img/sito/blog/blog-1.jpg')}}">
+                            <div class="blog__pic__inner">
+                                <div class="label">Recipes</div>
+                                <ul>
+                                    <li>By <span>{{ aut[i].Mail_Dipendente}}</span></li>
+                                    <li>{{artic[i].DataPubblicazione}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog__item__text">
+                            <h2>{{artic[i].Titolo}}</h2>
+                            <p>{{artic[i].Contenuto}}.</p>
+                            <a href="{{url_for('blog.blogDetailsRoute', id=artic[i].Id)}}">READ MORE</a>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                    <div class="shop__pagination">
+                        {% for i in range(0, len_artic, 10) %}
+                            <a href="#">1</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog__sidebar">
+                        <div class="blog__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Enter keyword">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h5>Last posts</h5>
+                            <div class="blog__sidebar__recent">
+                                <a href="{{url_for('blog.blogDetailsRoute', id=ID)}}" class="blog__sidebar__recent__item">
+                                    <div class="blog__sidebar__recent__item__text">
+                                        <h4>{{testo.Titolo}}</h4>
+                                        <span>{{testo.DataPubblicazione}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h5>Categories</h5>
+                            <div class="blog__sidebar__item__categories">
+                                <ul>
+                                    <li><a href="#">Repice <span>36</span></a></li>
+                                    <li><a href="#">Guides <span>18</span></a></li>
+                                    <li><a href="#">News <span>09</span></a></li>
+                                    <li><a href="#">Videos <span>12</span></a></li>
+                                    <li><a href="#">Trending <span>27</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blog__sidebar__item">
+                            <h5>NEWsLETTeR</h5>
+                            <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
+                            <form action="{{url_for('profile.register')}}">
+                                <input type="text" placeholder="Your email">
+                                <label for="agg">
+                                    I agree to the terms & conditions
+                                    <input type="checkbox" id="agg">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <button type="submit" class="site-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section End -->
+{% endblock %}

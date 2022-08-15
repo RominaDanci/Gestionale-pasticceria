@@ -1,0 +1,27 @@
+{% extends 'sito/base.html' %}
+
+{% block comment %}
+
+<section class="class">
+        <div class="container">
+            <div class="row">
+                <div class="center">
+                    <div class="class__form">
+                        <form method="POST" action="">
+                            <div class="text-center">
+                                <div class="breadcrumb__text ">
+                                    <h2>Lascia il tuo commento</h2>
+                                </div>
+                            </div>
+                            <br>
+                            <textarea class="form-control" rows="3" name = "txt" placeholder="scrivi qui..."></textarea>
+                            <br>
+                            <button type="submit" class="primary-btn">Submit</button>
+                        </form>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    {{ fontawesome_html() }}
+    <meta charset="UTF-8">
+    <meta name="description" content="Cake Template">
+    <meta name="keywords" content="Cake, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cake | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/flaticon.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/barfiller.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/magnific-popup.css')}}" type="text/css">
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='css/sito/elegant-icons.css')}}" type="text/css">-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/nice-select.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sito/style.css')}}" type="text/css">
+</head>
+
+<body>
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__cart">
+            <div class="offcanvas__cart__links">
+                <a href="#" class="search-switch"><img src="{{url_for('static', filename='img/sito/icon/search.png')}}" alt=""></a>
+            </div>
+            <div class="offcanvas__cart__item">
+                {% if total >= 11 %}
+                <a href="{{url_for('ecommerce.shoping_cart')}}"><img class="size_icon" src="{{url_for('static', filename='img/sito/icon/cart.png')}}" alt=""><span>{{total}}</span></a>
+                {% else %}
+                <a href="{{url_for('ecommerce.shoping_cart')}}"><img src="{{url_for('static', filename='img/sito/icon/cart.png')}}" alt=""><span>{{total}}</span></a>
+                {% endif %}
+                <div class="cart__price">Cart: <span>{{totalMoney}} €</span></div>
+            </div>
+        </div>
+        <div class="offcanvas__logo">
+            <a href="index.html"><img src="{{url_for('static', filename='img/sito/logo.png')}}" alt=""></a>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__option">
+            <ul>
+                {% if user == '' %}
+                <li>
+                    <a href="{{url_for('profile.login')}}">Sign in</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{url_for('profile.user')}}">Accont</a>
+                    <span class="arrow_carrot-down"></span>
+                </li>
+                <li>
+                    <a href="{{url_for('profile.logout')}}">LogOut</a>
+                    <span class="arrow_carrot-down"></span>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <!-- Offcanvas Menu End -->
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header__top__inner">
+                            <div class="header__top__left">
+                                <ul>
+                                    {% if user == '' %}
+                                    <li>
+                                        <a href="{{url_for('profile.login')}}">Sign in</a>
+                                        <span class="arrow_carrot-down"></span>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <a href="{{url_for('profile.user')}}">Accont</a>
+                                        <span class="arrow_carrot-down"></span>
+                                    </li>
+                                    <li>
+                                        <a href="{{url_for('profile.logout')}}">LogOut</a>
+                                        <span class="arrow_carrot-down"></span>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="header__logo">
+                                <a href="{{url_for('home')}}"><img src="{{url_for('static', filename='img/sito/logo.png')}}" alt=""></a>
+                            </div>
+                            <div class="header__top__right">
+                                <div class="header__top__right__links">
+                                    <a href="#" class="search-switch"><img src="{{url_for('static', filename='img/sito/icon/search.png')}}" alt=""></a>
+                                </div>
+                                <div class="header__top__right__cart">
+                                    {% if total >= 11 %}
+                                    <a href="{{url_for('ecommerce.shoping_cart')}}"><img class="size_icon" src="{{url_for('static', filename='img/sito/icon/cart.png')}}" alt=""><span>{{total}}</span></a>
+                                    {% else %}
+                                    <a href="{{url_for('ecommerce.shoping_cart')}}"><img src="{{url_for('static', filename='img/sito/icon/cart.png')}}" alt=""><span>{{total}}</span></a>
+                                    {% endif %}
+                                    <div class="cart__price">Cart: <span>{{totalMoney}} €</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="canvas__open"><i class="fa fa-bars"></i></div>
+            </div>
+            <div class="row orangeBack">
+                <div class="col-lg-12">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            {% if pages[0] == 1%}
+                                <li class="active"><a href="{{url_for('home')}}">Home</a></li>
+                            {% else %}
+                                <li><a href="{{url_for('home')}}">Home</a></li>
+                            {% endif %}
+                            {% if pages[1] == 1%}
+                                <li class="active"><a href="{{url_for('ecommerce.shop')}}">Shop</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{url_for('ecommerce.shoping_cart')}}">Shoping Cart</a></li>
+                                        <li><a href="{{url_for('ecommerce.wishlist')}}">Wishlist</a></li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="{{url_for('ecommerce.shop')}}">Shop</a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{url_for('ecommerce.shoping_cart')}}">Shoping Cart</a></li>
+                                        <li><a href="{{url_for('ecommerce.wishlist')}}">Wishlist</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            {% if pages[2] == 1%}
+                                <li class="active"><a href="{{url_for('blog.blogRoute')}}">Blog</a></li>
+                            {% else %}
+                                <li><a href="{{url_for('blog.blogRoute')}}">Blog</a></li>
+                            {% endif %}
+                            {% if pages[3] == 1 %}
+                                <li class="active"><a href="{{url_for('contact')}}">Contact</a></li>
+                            {% else %}
+                                <li><a href="{{url_for('contact')}}">Contact</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+
+    <!--blocchi per index-->
+    {% block header %}
+    {% endblock %}
+    {% block hero %}
+    {% endblock %}
+    {% block about %}
+    {% endblock %}
+    {% block shop %}
+    {% endblock %}
+    {% block team %}
+    {% endblock %}
+    {% block testimonial %}
+    {% endblock %}
+    {% block instagram %}
+    {% endblock %}
+    {% block lastpost %}
+    {% endblock %}
+    {% block map %}
+    {% endblock %}
+
+    <!-- block about -->
+    {% block breadcrumbAbout %}
+    {% endblock %}
+    {% block team2 %}
+    {% endblock %}
+
+    <!-- block login -->
+    {% block login %}
+    {% endblock %}
+
+    <!-- block blog -->
+    {% block breadcrumbBlog %}
+    {% endblock %}
+    {% block blog %}
+    {% endblock %}
+
+    <!-- block blog details -->
+    {% block hero2 %}
+    {% endblock %}
+    {% block details %}
+    {% endblock %}
+
+    <!-- block checkout -->
+    {% block breadcrumbCheckout %}
+    {% endblock %}
+    {% block checkout %}
+    {% endblock %}
+
+    <!-- block contact -->
+    {% block contact %}
+    {% endblock %}
+
+    <!-- block shop -->
+    {% block breadcrumbShop %}
+    {% endblock %}
+    {% block product %}
+    {% endblock %}
+
+    <!-- block shop details -->
+    {% block breadcrumbDetails %}
+    {% endblock %}
+    {% block detailsProduct %}
+    {% endblock %}
+    {% block similar %}
+    {% endblock %}
+
+    <!-- block shopping-cart -->
+    {% block breadcrumbCart %}
+    {% endblock %}
+    {% block cart %}
+    {% endblock %}
+
+    <!-- block wishlist -->
+    {% block breadcrumbWishlist %}
+    {% endblock %}
+    {% block wish %}
+    {% endblock %}
+
+    <!-- block user -->
+    {% block user %}
+    {% endblock %}
+
+    <!-- block register -->
+    {% block register %}
+    {% endblock %}
+
+    <!-- block messaggio -->
+    {% block comment %}
+    {% endblock %}
+
+    <!-- Footer Section Begin -->
+    <footer class="footer set-bg" data-setbg="{{url_for('static', filename='img/sito/footer-bg.jpg')}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>WORKING HOURS</h6>
+                        <ul>
+                            <li>Monday - Friday: 08:00 am – 08:30 pm</li>
+                            <li>Saturday: 10:00 am – 16:30 pm</li>
+                            <li>Sunday: 10:00 am – 16:30 pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="{{url_for('static', filename='img/sito/footer-logo.png')}}" alt=""></a>
+                        </div>
+                        <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore dolore magna aliqua.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="footer__newslatter">
+                        <h6>Registrati</h6>
+                        <p>Get latest updates and offers.</p>
+                        <form action="{{url_for('profile.register')}}">
+                            <input type="text" placeholder="Email">
+                            <button type="submit">Invia</i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
+    </div>
+</div>
+<!-- Search End -->
+
+<!-- Js Plugins -->
+<script src="{{url_for('static', filename='js/sito/jquery-3.3.1.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/sito/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/sito/jquery.nice-select.min.js')}}/"></script>
+<script src="{{url_for('static', filename='js/sito/jquery.barfiller.js')}}/"></script>
+<script src="{{url_for('static', filename='js/sito/jquery.magnific-popup.min.js')}}/"></script>
+<script src="{{url_for('static', filename='js/sito/jquery.slicknav.js')}}"></script>
+<script src="{{url_for('static', filename='js/sito/owl.carousel.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/sito/jquery.nicescroll.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/sito/main.js')}}"></script>
+</body>
+
+</html>

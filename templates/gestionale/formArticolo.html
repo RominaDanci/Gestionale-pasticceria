@@ -1,0 +1,23 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formArticoli %}
+    <h2>Aggiungi articolo</h2>
+    {% from "sito/_formhelpers.html" import render_field %}
+        <form method="POST" action="">
+            <dl>
+              {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col-5">
+                        {{ render_field(form.Titolo, class="Blog"+form.Titolo.name) }}
+                    </div>
+                    <div class="col">
+                        {{ render_field(form.Categoria) }}
+                    </div>
+                </div>
+
+
+              {{ render_field(form.Contenuto, class="Bigtext") }}
+            </dl>
+            {{ form.submit }}
+        </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formDipendente %}
+    <h2 class="text-center">Registrazione nuovo dipendente</h2>
+    {% from "sito/_formhelpers.html" import render_field %}
+        <form method="POST" action="" class="center">
+            <dl>
+              {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col">
+                        {{ render_field(form.nome) }}
+                    </div>
+                    <div class="col">
+                         {{ render_field(form.cognome) }}
+                    </div>
+                </div>
+
+              {{ render_field(form.datanascita) }}
+                <div class="row">
+                    <div class="col">
+                        {{ render_field(form.mail) }}
+                    </div>
+                    <div class="col">
+                         {{ render_field(form.telefono) }}
+                    </div>
+                </div>
+
+
+            </dl>
+            {{ form.submit }}
+        </form>
+{% endblock %}

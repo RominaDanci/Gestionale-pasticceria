@@ -1,0 +1,47 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formRicette %}
+<body>
+    <script>
+    function outputUpdate(numero) {
+        document.querySelector('#persone').value = numero;
+    }
+    </script>
+  <div>
+      <h2 class="text-center">Aggiungi le diverse informazioni per la Ricetta</h2>
+    <h3>{{nome}}</h3>
+    {% from "sito/_formhelpers.html" import render_field %}
+      <form method="POST" action="" >
+          <dl>
+            {{ form.hidden_tag() }}
+            <!--TODO campo da materie prime -->
+              <div class="row">
+                  <div class="col-7">
+                      <div class="row">
+                          {% for i in range(0, len_ing) %}
+                          <div class="col">
+                            <h5>{{ing[i][0]}}</h5>
+                            {{form.Ingrediente[i]}}
+                          </div>
+                          {% endfor %}
+                      </div>
+                  </div>
+                  <div class="col-4">
+                      Indicare per quante persone, da un minimo di 1 fino a un massimo di 20, è indicata la ricetta <br>
+                      {{ form.Persone(min=1, max=20, oninput="outputUpdate(value)") }} <br>
+                      Persone selezionate: <output for="Persone" id="persone">{{ form.Persone.data }}</output>
+                      <br>
+                      <br>
+                      Indicare il tempo necessario per preparare il semilavorato nella sua interezza
+                      {{ render_field(form.Tempo) }}
+                  </div>
+              </div>
+
+
+            {{ render_field(form.Preparazione, class='semi'+form.Preparazione.name) }}
+          </dl>
+          {{ form.submit}}
+      </form>
+  </div>
+</body>
+{% endblock %}

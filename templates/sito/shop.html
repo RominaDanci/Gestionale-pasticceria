@@ -1,0 +1,116 @@
+{% extends 'sito/base.html' %}
+
+{% block breadcrumbShop %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="card spad center margin-top" style="width: 18rem;">
+            <div class="card-body orange">
+                {% for message in messages %}
+                <h2 class="black">{{ message }}</h2>
+                <a href="{{url_for('ecommerce.wishlist')}}"> Accedi da qui!</a>
+                {% endfor %}
+            </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>Shop</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="{{url_for('home')}}">Home</a>
+                        <span>Shop</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Section Begin -->
+    <section class="shop">
+        <div class="container">
+            <div class="shop__option">
+                <div class="row">
+                    <div class="col-lg-7 col-md-7">
+                        <div class="shop__option__search">
+                            <form action="{{url_for('ecommerce.shop')}}" method="post">
+                                <select name="cat">
+                                    <option value="all">Categories</option>
+                                    <option value="Brioche">Brioche</option>
+                                </select>
+                                <input type="text" placeholder="Search">
+                                <input type="hidden" value="1" name="hidden" class="">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <form class="shop__option__right" method="post" >
+                            <select style="display: none;" name="scelta">
+                                <option value="1">A to Z</option>
+                                <option value="2">Per prezzo</option>
+                            </select>
+                            <input type="hidden" value="2" name="hidden" class="">
+                            <button type="submit" class="fa fa-list"></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block product %}
+    <section class="shop">
+        <div class="container">
+            <div class="row">
+                {% for i in range(0, lenProd) %}
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a class="product__item space" href="{{url_for('ecommerce.shop_details', id=Prod[i].Id)}}">
+                        <div class="product__item__pic set-bg" data-setbg="{{url_for('static', filename='img/sito/shop/product-1.jpg')}}">
+                            <div class="product__label">
+                                <span>{{Prod[i].Categoria}}</span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="{{url_for('ecommerce.shop_details', id=Prod[i].Id)}}">{{Prod[i].Nome}}</a></h6>
+                            <div class="product__item__price">{{Prod[i].PrezzoUnitario}}€</div>
+                            <div class="cart_add">
+                                <a href="{{url_for('ecommerce.shop_details', id=Prod[i].Id)}}">Add to cart</a>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+                <br>
+                {% endfor %}
+            </div>
+            <br>
+            <hr>
+            <div class="shop__last__option">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="shop__pagination">
+                            {% for i in range(0, lenProd, 10) %}
+                                <a href="#">1</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="shop__last__text">
+                            <p>Showing 1-9 of 10 results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br>
+    </section>
+    <!-- Shop Section End -->
+{% endblock %}

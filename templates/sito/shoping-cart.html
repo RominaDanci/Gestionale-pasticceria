@@ -1,0 +1,128 @@
+{% extends 'sito/base.html' %}
+
+{% block breadcrumbCart %}
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__text">
+                        <h2>Shopping cart</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="breadcrumb__links">
+                        <a href="{{url_for('home')}}">Home</a>
+                        <span>Shopping cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+{% endblock %}
+
+{% block cart %}
+    <!-- Shopping Cart Section Begin -->
+    {%if lenProd == 0%}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="container spad">
+                <div class="row center">
+                    <div>
+                        {% for message in messages %}
+                            <h3 class="text-center">{{ message }}</h3>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <img src="{{url_for('static', filename='img/sito/icon/carrello.jpg')}}" class="icon center">
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 center">
+                        <a href="{{url_for('ecommerce.shop')}}" class="primary-btn text-center">visita lo shop</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endwith %}
+    {% else %}
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Modify</th>
+                                </tr>
+                            </thead>
+
+                            {% for i in range(0, lenProd) %}
+                            <tbody>
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__text">
+                                            <a href="{{url_for('ecommerce.shop_details', id=Prod[i].Id)}}">
+                                                <h6>{{Prod[i].Nome}}</h6>
+                                                <h5>{{Prod[i].PrezzoUnitario}}€</h5>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        {{Cart[i].QuantitàCarrello}}
+                                    </td>
+                                    <!--<form action="" method="post">
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="{{Cart[i].QuantitàCarrello}}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    </form>-->
+                                    <td class="cart__price">{{'%0.2f'| format(Prod[i].PrezzoUnitario * Cart[i].QuantitàCarrello|float)}}€</td>
+                                    <td>
+                                        <a href="{{url_for('ecommerce.shop_details', id=Prod[i].Id)}}"><img src="{{url_for('static', filename='img/sito/icon/edit.png')}}" alt="" class="icon2 center"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="{{url_for('ecommerce.shop')}}">Torna al negozio</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Discount codes</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Coupon code">
+                            <button type="submit">Apply</button>
+                        </form>
+                    </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Subtotal <span>{{totale}}€</span></li>
+                            <li>Total <span>{{totale}}€</span></li>
+                        </ul>
+                        <a href="{{url_for('ecommerce.checkout')}}" class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+{% endif %}
+{% endblock %}

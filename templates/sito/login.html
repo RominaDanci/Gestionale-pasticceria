@@ -1,0 +1,38 @@
+{% extends 'sito/base.html' %}
+
+{% block login %}
+    <section class="class">
+        {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="card spad center margin-top" style="width: 18rem;">
+            <div class="card-body orange">
+                {% for message in messages %}
+                <h2 class="black">{{ message }}</h2>
+                <a href="{{url_for('ecommerce.wishlist')}}"> Accedi da qui!</a>
+                {% endfor %}
+            </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+        <div class="container">
+            <div class="row">
+                <div class="col-10 center">
+                    <div class="class__form">
+                        <div class="section-title">
+                            <h2 class="text-center">Benvenuto o bentornato</h2>
+                        </div>
+                        {% from "sito/_formhelpers.html" import render_field %}
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            {{ render_field(form.username) }}
+                            {{ render_field(form.password) }}
+                            {{ form.submit }}
+                        </form>
+                        <a href="{{url_for('profile.register')}}">Non hai ancora un account? Registrati!</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

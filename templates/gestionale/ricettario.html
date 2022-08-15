@@ -1,0 +1,42 @@
+{% extends 'gestionale/base.html' %}
+
+{% block ricette %}
+<h2>Ricettario</h2>
+<a href="{{url_for('ricettario.addSemi')}}" class="btn btn-primary">Aggiungi prodotto</a>
+<br>
+<br>
+{% if len_ricette == 0 %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="center">
+        {% for message in messages %}
+          <h2 class="text-center">{{ message }}</h2>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+{% else %}
+    <div class="row">
+        {% for i in range(0, len_ricette)%}
+            <a href="{{url_for('ricettario.ricetta', id=1)}}">
+            <div class="col-5">
+                <div class="card" style="width: 18rem;">
+                <img src="{{url_for('static', filename='img/sito/shop/details/product-big-1.jpg')}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">{{Prod[i].Nome}}</h3>
+                        <p class="card-text">{{Prod[i].Descrizione}}</p>
+                        <h5>Ingredienti</h5>
+                        <li>
+                            {% for j in range(0, Ing[i]|length) %}
+                                <ul>{{Ing[i][j][0]}} : {{Ing[i][j][1]}}</ul>
+                            {% endfor %}
+                        </li>
+                        <p class="card-text">{{Prod[i].Preparazione}}</p>
+                    </div>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+{%endif%}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'gestionale/base.html' %}
+
+{% block formMerce %}
+    {% from "sito/_formhelpers.html" import render_field %}
+    <form method="POST" action="" class="center">
+        <dl>
+            <lable>Nome</lable>
+            <input type="text" class="form-control" placeholder="inserire nome" name = "nome" value = "{{Merce.Nome}}" required>
+            <lable>Quantità</lable>
+            <input type="number" class="form-control" placeholder="inserire quantità" name = "quantità" value = "{{Merce.Quantità}}" required>
+            <lable>Prezzo</lable>
+            <input type="number" class="form-control" placeholder="inserire prezzo" name = "prezzo" value = "{{Merce.PrezzoUnitario}}" required>
+            <lable>IVA</lable>
+            <input type="number" class="form-control" placeholder="inserire iva" name = "iva" value = "{{Merce.IVA}}" required>
+            <lable>Materia prima</lable>
+            <input type="radio" class="form-control" id="si" name = "materiaprima" value="True">
+            <label for="si">Sì</label><br>
+            <input type="radio" class="form-control" id="no" name = "materiaprima" value="False">
+            <label for="no">No</label><br>
+
+            <button type="submit" class="btn ">Aggiorna</button>
+        </dl>
+    </form>
+{% endblock %}

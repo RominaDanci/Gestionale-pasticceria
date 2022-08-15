@@ -1,0 +1,84 @@
+{% extends 'gestionale/base.html' %}
+
+{% block magazzino %}
+<h2>Magazzino</h2>
+<div class="row g-3">
+    <div class="col-auto">
+        {% if attiva[1] == 1 %}
+            <a href="{{url_for('magazzino.semilavorati')}}" class="btn btn-success mb-3">Semilavorati</a>
+        {% else %}
+            <a href="{{url_for('magazzino.semilavorati')}}" class="btn btn-secondary mb-3">Semilavorati</a>
+        {% endif %}
+    </div>
+    <div class="col-auto">
+        {% if attiva[2] == 1 %}
+            <a href="{{url_for('magazzino.prodotti')}}" class="btn btn-success mb-3">Prodotti</a>
+        {% else %}
+            <a href="{{url_for('magazzino.prodotti')}}" class="btn btn-secondary mb-3">Prodotti</a>
+        {% endif %}
+    </div>
+    <div class="col-auto">
+        {% if attiva[3] == 1 %}
+            <a href="{{url_for('magazzino.materieprime')}}" class="btn btn-success mb-3">Materie Prime</a>
+        {% else %}
+            <a href="{{url_for('magazzino.materieprime')}}" class="btn btn-secondary mb-3">Materie Prime</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    {% for i in range(0, Prod|length)%}
+        {% if categoria == 0 %}
+            {% if i < Semi|length %}
+                {% set categoria = 1 %}
+            {% else %}
+                {% set categoria = 2 %}
+            {% endif %}
+        {% endif %}
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+            <img src="{{url_for('static', filename='img/sito/shop/details/product-big-1.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{Prod[i].Nome}}</h5>
+                    <div class="small-ratings text-center">
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star rating-color"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <br>
+                    {% if categoria == 1 %}
+                    <p class="card-text">Descrizione: {{Prod[i].Descrizione}}</p>
+                    <p class="card-text">Incipit: {{Prod[i].Incipit}}</p>
+                    {% endif %}
+                    <p>Quantità: {{Prod[i].Quantità}}</p>
+                    <p>Prezzo: {{Prod[i].PrezzoUnitario}}$</p>
+                    <div class="row g-3">
+                        <div class="col-auto">
+                            <a href="">
+                                <img src="{{url_for('static', filename='img/sito/icon/cart.png')}}" alt="">
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            <a href="">
+                                <img src="{{url_for('static', filename='img/sito/icon/heart.png')}}" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <br>
+                    {% if categoria == 1 %}
+                        <div class="col-auto">
+                            <a href="{{url_for('magazzino.modificaSemilavorato', id=Prod[i].Id)}}" class="btn btn-primary">Modifica prodotto</a>
+                        </div>
+                        {% else %}
+                        <div class="col-auto">
+                            <a href="{{url_for('magazzino.modificaMerce', id=Prod[i].Id)}}" class="btn btn-primary">Modifica merce</a>
+                        </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

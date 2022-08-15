@@ -1,0 +1,42 @@
+{% extends 'sito/base.html' %}
+
+{% block user %}
+<section>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-8">
+                <div class="blog__details__recipe__details">
+                    <div class="row">
+                        <div class="col-lg-6 center">
+                            <img class="pic avatar" src="{{url_for('static', filename='img/sito/blog/details/blog-details.jpg')}}">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="blog__details__ingredients center size-user">
+                                <h6>Benvenuto {{nome}}!</h6>
+                                <h5>I tuoi dati:</h5>
+                                    Nome: {{nome}}<br>
+                                    Cognome: {{cognome}}<br>
+                                    Data di nascita: {{datanascita}}<br>
+                                    Mail: {{mail}}<br>
+                            </div>
+                            <br>
+                            <div class="product__details__option">
+                                <a href="{{url_for('ecommerce.shoping_cart')}}" class="primary-btn">Visita il tuo carrello</a>
+                            </div>
+                            <br>
+                            <div class="product__details__options">
+                                <a href="{{url_for('profile.userModify')}}" class="primary-btn">Modifica i tuoi dati</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

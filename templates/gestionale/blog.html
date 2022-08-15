@@ -1,0 +1,41 @@
+{% extends 'gestionale/base.html' %}
+
+{% block articoli %}
+<h2>Blog</h2>
+<a href="{{url_for('blog.addArticolo')}}" class="btn btn-primary">Aggiungi articolo</a>
+<br>
+<br>
+{% if articoli|length == 0 %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="center">
+        {% for message in messages %}
+          <h2 class="text-center">{{ message }}</h2>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+{% else %}
+    <table class="table">
+        <tr>
+          <th scope="col" class="text-center">Titolo</th>
+          <th scope="col" class="text-center">Contenuto</th>
+          <th scope="col" class="text-start text-center">Data di pubblicazione</th>
+          <th scope="col" class="text-center">Categoria</th>
+          <th scope="col" class="text-center">Autore</th>
+        </tr>
+
+        {% for i in range(0, articoli|length) %}
+        <tr>
+
+          <th class="text-start text-center">{{articoli[i].Titolo}}</th>
+          <td class="text-start resize text-center">{{articoli[i].Contenuto}}</td>
+          <td class="text-start text-center">{{articoli[i].DataPubblicazione}}</td>
+          <td class="text-start text-center">{{articoli[i].Categoria}}</td>
+          <td class="text-start text-center">{{autore[i].Mail_Dipendente}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+{%endif%}
+{% endblock %}

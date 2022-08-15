@@ -1,0 +1,26 @@
+{% extends 'gestionale/base.html' %}
+
+{% block turniSingleTable %}
+<h2>Turni svolti da {{Dip.Nome}} {{Dip.Cognome}} del {{meseACT}}</h2>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Turno</th>
+            <th>Ore standard</th>
+            <th>Ore straordinarie</th>
+        </tr>
+        {% for i in range(0, Turni|length) %}
+        <tr>
+            <td>{{Turni[i].Nome}}</td>
+            <td>{{Differenze[i][0]}}</td>
+            <td>{{Differenze[i][1]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <div>
+        <p>Totale ore: {{TotOre}}  ore e {{TotOreStra}} straordinarie</p>
+        <p>Costo previsto: {{Stip}} euro </p>
+    </div>
+</div>
+{% endblock %}
